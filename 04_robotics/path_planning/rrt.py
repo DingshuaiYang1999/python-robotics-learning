@@ -209,6 +209,9 @@ def run_rrt(budget: int, seed: int, sequence: list[tuple[Point, bool]]) -> RRTRe
         if candidate is None:
             continue
 
+        if not segment_is_free(nodes[nearest_index], candidate):
+            continue
+
         if any(distance(candidate, node) < MERGE_RADIUS for node in nodes):
             continue
 

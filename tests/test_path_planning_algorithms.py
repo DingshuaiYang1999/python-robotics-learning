@@ -30,6 +30,8 @@ def test_rrt_demo_seed_finds_a_collision_free_path() -> None:
     assert result.nodes[result.path_indices[-1]] == rrt.GOAL
     assert result.path_length > 0
     assert result.iterations_used <= rrt.HIGH_BUDGET
+    for left, right in zip(result.path_indices, result.path_indices[1:]):
+        assert rrt.segment_is_free(result.nodes[left], result.nodes[right])
 
 
 def test_bidirectional_rrt_demo_seed_connects_both_trees() -> None:

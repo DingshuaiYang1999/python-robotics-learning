@@ -1,0 +1,8 @@
+name: python-robotics-learning
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pytest
+  - flake8

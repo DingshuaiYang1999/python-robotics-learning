@@ -85,3 +85,25 @@ def test_vertical_edge_is_seen_by_sobel_x_only() -> None:
     gx, gy = edges.sobel(image)
     assert np.abs(gx[10, 9:11]).min() > 0
     assert np.abs(gy[2:-2, :]).max() == 0
+
+
+# ------------------------------------------------------------------- neural network
+def test_neural_network_backpropagation_matches_finite_differences() -> None:
+    nn = load_module("nn_module", "05_computer_vision/neural_network/nn_decision_boundary.py")
+    X, y = nn.make_dataset("circle", n=12, seed=1)
+    for activation in ("tanh", "sigmoid", "relu"):
+        net = nn.NeuralNetwork([4, 3], activation, l2=0.01, seed=2)
+        # Non-zero biases keep every ReLU away from its kink at z = 0, where the derivative is undefined.
+        rng = np.random.default_rng(5)
+        net.b = [rng.normal(0.0, 0.1, b.shape) for b in net.b]
+        assert nn.gradient_check(net, X, y) < 1e-4
+
+
+def test_neural_network_learns_xor_which_a_linear_model_cannot() -> None:
+    nn = load_module("nn_module", "05_computer_vision/neural_network/nn_decision_boundary.py")
+    X, y = nn.make_dataset("xor", n=200, seed=0)
+    net = nn.NeuralNetwork([6, 6], "tanh", seed=0)
+    history = net.fit(X, y, epochs=80, lr=0.02, seed=0)
+
+    assert history[-1] < history[0]
+    assert net.accuracy(X, y) > 0.95

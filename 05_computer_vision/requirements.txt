@@ -1,0 +1,5 @@
+# Packages used by the computer-vision examples (Python 3.10+).
+numpy
+opencv-python-headless>=4.8,<5   # "cv2" (4.x has cv2.ml used by the k-NN comparison); opencv-python also works
+matplotlib
+scikit-learn             # optional: only used to cross-check the from-scratch k-NN

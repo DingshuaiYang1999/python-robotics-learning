@@ -6,3 +6,7 @@ dependencies:
   - pip
   - pytest
   - flake8
+  - numpy
+  - matplotlib
+  - pip:
+      - "opencv-python-headless>=4.8,<5"

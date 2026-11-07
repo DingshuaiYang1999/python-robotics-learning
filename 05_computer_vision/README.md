@@ -9,6 +9,7 @@ in its docstring, implements it from scratch with NumPy, and compares the result
 | `knn/knn_from_scratch.py` | k-nearest-neighbour classifier, Euclidean and Manhattan distance, decision regions | scikit-learn, `cv2.ml.KNearest` |
 | `neural_network/nn_decision_boundary.py` | Fully connected network with back-propagation and Adam, trained on circle, XOR, Gaussian and spiral data; decision-boundary heat map and loss curve | gradient check against finite differences |
 | `edge_detection/edge_detection.py` | Sobel x, Sobel y, gradient magnitude, Canny (Gaussian blur, non-maximum suppression, double threshold, hysteresis) | `cv2.Sobel`, `cv2.Canny` |
+| `harris_corner_detection/harris.py` | Harris response `AB − C² − α(A+B)²`, relative threshold, non-maximum suppression | website `demos/harris.js` |
 
 ## Run
 
@@ -19,6 +20,8 @@ python 05_computer_vision/knn/knn_from_scratch.py --k 5 --metric euclidean
 python 05_computer_vision/neural_network/nn_decision_boundary.py --data spiral --layers 2 --neurons 8 --activation tanh
 python 05_computer_vision/edge_detection/edge_detection.py --low 50 --high 150 --sigma 1.4 --ksize 5
 python 05_computer_vision/edge_detection/edge_detection.py --image my_photo.jpg --l2
+python 05_computer_vision/harris_corner_detection/harris.py
+python 05_computer_vision/harris_corner_detection/harris.py --image photo.jpg --output corners.png
 ```
 
 Figures are written to `05_computer_vision/output/`:

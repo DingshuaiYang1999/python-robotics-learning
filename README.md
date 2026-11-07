@@ -34,7 +34,7 @@
 02_numpy_math/        # Mathematik / Math
 03_control_theory/    # Regelungstechnik / Control
 04_robotics/          # Robotik / Robotics
-05_computer_vision/   # Computer Vision: k-NN, Sobel, Canny
+05_computer_vision/   # Computer Vision: k-NN, Sobel, Canny, Harris
 ---
 
 ## 📅 Fortschritt / Progress
